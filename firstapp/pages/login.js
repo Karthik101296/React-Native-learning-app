@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import images from "../assets/images";
+import Modal from "../components/modal";
 
 export default function SignIn({ navigation }) {
   const [email, setEmail] = useState("");
@@ -21,7 +22,6 @@ export default function SignIn({ navigation }) {
     let errors = { email: "", password: "" };
 
     // Email validation
-
     if (!email) {
       errors.email = "Email is required";
       valid = false;
@@ -46,7 +46,7 @@ export default function SignIn({ navigation }) {
 
   const handleLogin = () => {
     if (validateForm()) {
-        navigation.navigate("Home");
+      navigation.navigate("Home");
       // Proceed with login logic
       console.log("Logging in...");
     }
@@ -87,7 +87,7 @@ export default function SignIn({ navigation }) {
                 keyboardType="email-address"
                 onFocus={() => setError((prev) => ({ ...prev, email: "" }))}
                 onChangeText={(text) => setEmail(text)}
-                onBlur={() => validateForm('email', email)}
+                //onBlur={() => validateForm('email', email)}
                 placeholder="john@example.com"
                 placeholderTextColor="#6b7280"
                 style={styles.inputControl}
@@ -104,7 +104,7 @@ export default function SignIn({ navigation }) {
                 clearButtonMode="while-editing"
                 onChangeText={(text) => setPassword(text)}
                 onFocus={() => setError((prev) => ({ ...prev, password: "" }))}
-                onBlur={validateForm}
+                //onBlur={() => validateForm('password', password)}
                 placeholder="********"
                 placeholderTextColor="#6b7280"
                 style={styles.inputControl}
@@ -118,22 +118,24 @@ export default function SignIn({ navigation }) {
             <View style={styles.formAction}>
               <TouchableOpacity onPress={handleLogin}>
                 <View style={styles.btn}>
-                  <Text style={styles.btnText}>
-                    Sign in
-                  </Text>
+                  <Text style={styles.btnText}>Sign in</Text>
                 </View>
               </TouchableOpacity>
             </View>
-            <Text style={styles.formLink}>Forgot password?</Text>
+
+            <Modal></Modal>
           </View>
         </KeyboardAwareScrollView>
-        <TouchableOpacity
-          style={{ marginTop: "auto" }}>
+        <TouchableOpacity style={{ marginTop: "auto" }}>
           <Text style={styles.formFooter}>
             Don't have an account?{" "}
-            <Text style={{ textDecorationLine: "underline" }} onPress={() => {
+            <Text
+              style={{ textDecorationLine: "underline" }}
+              onPress={() => {
                 navigation.navigate("SignUp");
-              }}>Sign up</Text>
+              }}>
+              Sign up
+            </Text>
           </Text>
         </TouchableOpacity>
       </View>

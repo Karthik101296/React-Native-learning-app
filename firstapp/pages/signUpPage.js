@@ -4,7 +4,6 @@ import {
   SafeAreaView,
   TextInput,
   Image,
-  Button,
   Text,
   StyleSheet,
   TouchableOpacity,
@@ -67,15 +66,15 @@ export default function SignUp({ navigation }) {
         touched,
       }) => (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#8AAAE5" }}>
-        <View style={styles.container}>
-          <KeyboardAwareScrollView>
-            <View style={styles.header}>
-              <Image
-                alt="App Logo"
-                resizeMode="contain"
-                source={images.SignUpIconImage}
-                style={styles.headerImg}></Image>
-              {/* <Image
+          <View style={styles.container}>
+            <KeyboardAwareScrollView>
+              <View style={styles.header}>
+                <Image
+                  alt="App Logo"
+                  resizeMode="contain"
+                  source={images.SignUpIconImage}
+                  style={styles.headerImg}></Image>
+                {/* <Image
               alt="App Logo"
               resizeMode="contain"
               style={styles.headerImg}
@@ -83,66 +82,64 @@ export default function SignUp({ navigation }) {
                 uri: "https://assets.withfra.me/SignIn.2.png",
               }}
             /> */}
-              <Text style={styles.title}>
-                Get Started
-              </Text>
-              <Text style={styles.subtitle}>
-                All Fields are Required to continue.
-              </Text>
-            </View>
-            <View style={styles.form}>
-              <View style={styles.input}>
-                <Text style={styles.inputLabel}>Name*</Text>
-                <TextInput
-                  placeholder="Name"
-                  style={styles.inputControl}
-                  onChangeText={handleChange("name")}
-                  onBlur={handleBlur("name")}
-                  value={values.name}
-                />
-                {errors.name && touched.name && (
-                  <Text style={styles.error}>{errors.name}</Text>
-                )}
+                <Text style={styles.title}>Get Started</Text>
+                <Text style={styles.subtitle}>
+                  All Fields are Required to continue.
+                </Text>
               </View>
-
-              <View style={styles.input}>
-                <Text style={styles.inputLabel}>Email*</Text>
-                <TextInput
-                  placeholder="Email"
-                  style={styles.inputControl}
-                  onChangeText={handleChange("email")}
-                  onBlur={handleBlur("email")}
-                  value={values.email}
-                />
-                {errors.email && touched.email && (
-                  <Text style={styles.error}>{errors.email}</Text>
-                )}
-              </View>
-
-              <View style={styles.input}>
-                <Text style={styles.inputLabel}>Password*</Text>
-                <TextInput
-                  placeholder="Password"
-                  style={styles.inputControl}
-                  secureTextEntry
-                  onChangeText={handleChange("password")}
-                  onBlur={handleBlur("password")}
-                  value={values.password}
-                />
-                {errors.password && touched.password && (
-                  <Text style={styles.error}>{errors.password}</Text>
-                )}
-              </View>
-
-              <TouchableOpacity onPress={handleSubmit}>
-                <View style={styles.btn}>
-                  <Text style={styles.btnText}>Sign Up</Text>
+              <View style={styles.form}>
+                <View style={styles.input}>
+                  <Text style={styles.inputLabel}>Name*</Text>
+                  <TextInput
+                    placeholder="Name"
+                    style={styles.inputControl}
+                    onChangeText={handleChange("name")}
+                    onBlur={handleBlur("name")}
+                    value={values.name}
+                  />
+                  {errors.name && touched.name && (
+                    <Text style={styles.error}>{errors.name}</Text>
+                  )}
                 </View>
-              </TouchableOpacity>
-              {/* <Button title="Sign Up" onPress={handleSubmit} /> */}
-            </View>
-          </KeyboardAwareScrollView>
-        </View>
+
+                <View style={styles.input}>
+                  <Text style={styles.inputLabel}>Email*</Text>
+                  <TextInput
+                    placeholder="Email"
+                    style={styles.inputControl}
+                    onChangeText={handleChange("email")}
+                    onBlur={handleBlur("email")}
+                    value={values.email}
+                  />
+                  {errors.email && touched.email && (
+                    <Text style={styles.error}>{errors.email}</Text>
+                  )}
+                </View>
+
+                <View style={styles.input}>
+                  <Text style={styles.inputLabel}>Password*</Text>
+                  <TextInput
+                    placeholder="Password"
+                    style={styles.inputControl}
+                    secureTextEntry
+                    onChangeText={handleChange("password")}
+                    onBlur={handleBlur("password")}
+                    value={values.password}
+                  />
+                  {errors.password && touched.password && (
+                    <Text style={styles.error}>{errors.password}</Text>
+                  )}
+                </View>
+
+                <TouchableOpacity onPress={handleSubmit}>
+                  <View style={styles.btn}>
+                    <Text style={styles.btnText}>Sign Up</Text>
+                  </View>
+                </TouchableOpacity>
+                {/* <Button title="Sign Up" onPress={handleSubmit} /> */}
+              </View>
+            </KeyboardAwareScrollView>
+          </View>
         </SafeAreaView>
       )}
     </Formik>
@@ -215,27 +212,6 @@ const styles = StyleSheet.create({
   },
   error: { color: "red", marginTop: 2, marginBottom: 3 },
   /** Input */
-  input: {
-    marginBottom: 16,
-  },
-  inputLabel: {
-    fontSize: 17,
-    fontWeight: "600",
-    color: "#00246B",
-    marginBottom: 8,
-  },
-  inputControl: {
-    height: 50,
-    backgroundColor: "#fff",
-    paddingHorizontal: 16,
-    borderRadius: 12,
-    fontSize: 15,
-    fontWeight: "500",
-    color: "#121212",
-    borderWidth: 1,
-    borderColor: "#C9D3DB",
-    borderStyle: "solid",
-  },
   btn: {
     flexDirection: "row",
     alignItems: "center",
