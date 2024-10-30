@@ -71,7 +71,12 @@ export default function Modals({}) {
                     <View style={styles.input}>
                       <Text style={styles.inputLabel}>Email*</Text>
                       <TextInput
-                        placeholder="Email"
+                        autoCapitalize="none"
+                        autoCorrect={false}
+                        clearButtonMode="while-editing"
+                        keyboardType="email-address"
+                        placeholder="john@example.com"
+                        placeholderTextColor="#6b7280"
                         style={styles.inputControl}
                         onChangeText={handleChange("email")}
                         onBlur={handleBlur("email")}

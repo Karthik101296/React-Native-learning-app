@@ -30,6 +30,7 @@ export default function App() {
             options={{
               title: "App",
               headerTitleAlign: "center",
+              headerShown: false,
               headerStyle: {
                 backgroundColor: "#F6FBF4", //Set Header color
               },
@@ -46,6 +47,7 @@ export default function App() {
             options={{
               title: "SignIn",
               headerTitleAlign: "center",
+              headerShown: false,
               headerStyle: {
                 backgroundColor: "#8AAAE5", //Set Header color
               },

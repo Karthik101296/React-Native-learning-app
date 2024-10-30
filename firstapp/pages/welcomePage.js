@@ -58,12 +58,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     flexDirection: "column",
-    flexGrow: 1,
     flexShrink: 1,
     flexBasis: 0,
     fontFamily: "PlaywriteIN",
     marginVertical: 'auto',
     textAlign: 'center',
+    width: '100%',
   },
   title: {
     fontSize: 36,

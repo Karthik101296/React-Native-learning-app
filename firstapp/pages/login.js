@@ -11,6 +11,8 @@ import {
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import images from "../assets/images";
 import Modal from "../components/modal";
+import { auth } from "../firebase";
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function SignIn({ navigation }) {
   const [email, setEmail] = useState("");
@@ -44,9 +46,17 @@ export default function SignIn({ navigation }) {
     return valid;
   };
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (validateForm()) {
-      navigation.navigate("Home");
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        console.log("User signed in successfully");
+        navigation.navigate("Home");
+        // Handle successful sign-in
+      } catch (error) {
+        setError(error.message);
+        console.log("Error signing in:", error);
+      }
       // Proceed with login logic
       console.log("Logging in...");
     }

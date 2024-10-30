@@ -12,6 +12,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import images from "../assets/images";
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 // Validation schema using Yup
 const SignupSchema = Yup.object().shape({
@@ -25,38 +27,32 @@ const SignupSchema = Yup.object().shape({
 });
 
 export default function SignUp({ navigation }) {
-  //   const handleSignup = async (values) => {
-  //     try {
-  //       const response = await fetch("https://yourapi.com/signup", {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify(values),
-  //       });
-
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         console.log("Signup successful:", data);
-  //         // Navigate to the Home screen after successful signup
-  //         navigation.navigate("LogIn");
-  //       } else {
-  //         console.log("Signup failed");
-  //       }
-  //     } catch (error) {
-  //       console.log("Error during signup:", error);
-  //     }
-  //   };
-
-  const handleSignup = () => {
-    navigation.navigate("LogIn");
-    // Proceed with login logic
-    console.log("Sign up...");
+  const handleSignup = async (values, { setSubmitting, setErrors }) => {
+    const { name, email, password } = values;
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        name,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      console.log("User signed up successfully:", user);
+      // Additional actions after successful signup, like navigation
+      navigation.navigate("LogIn");
+    } catch (error) {
+      setErrors({ firebase: error.message });
+      console.log("Error signing up:", error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
     <Formik
       initialValues={{ name: "", email: "", password: "" }}
       validationSchema={SignupSchema}
-      onSubmit={(values) => handleSignup(values)}>
+      onSubmit={handleSignup}>
       {({
         handleChange,
         handleBlur,
@@ -74,14 +70,14 @@ export default function SignUp({ navigation }) {
                   resizeMode="contain"
                   source={images.SignUpIconImage}
                   style={styles.headerImg}></Image>
-                {/* <Image
-              alt="App Logo"
-              resizeMode="contain"
-              style={styles.headerImg}
-              source={{
-                uri: "https://assets.withfra.me/SignIn.2.png",
-              }}
-            /> */}
+                {/* <Image 
+                  alt="App Logo"
+                  resizeMode="contain"
+                  style={styles.headerImg}
+                  source={{
+                    uri: "https://assets.withfra.me/SignIn.2.png",
+                  }}
+                  /> */}
                 <Text style={styles.title}>Get Started</Text>
                 <Text style={styles.subtitle}>
                   All Fields are Required to continue.
@@ -130,6 +126,10 @@ export default function SignUp({ navigation }) {
                     <Text style={styles.error}>{errors.password}</Text>
                   )}
                 </View>
+
+                {errors.firebase && (
+                  <Text style={styles.error}>{errors.firebase}</Text>
+                )}
 
                 <TouchableOpacity onPress={handleSubmit}>
                   <View style={styles.btn}>
