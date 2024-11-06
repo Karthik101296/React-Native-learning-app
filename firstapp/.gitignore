@@ -3,6 +3,9 @@
 # dependencies
 node_modules/
 
+# Environment variables
+.env
+
 # Expo
 .expo/
 dist/
@@ -33,3 +36,11 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+# Directory for iOS and Android builds
+/ios/build/
+/android/app/build/
+
+# Ignore package lock files
+package-lock.json
+yarn.lock
