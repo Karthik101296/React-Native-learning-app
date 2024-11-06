@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   StyleSheet,
+  Alert,
   TouchableOpacity,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -13,7 +14,7 @@ import images from "../assets/images";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 // Validation schema using Yup
 const SignupSchema = Yup.object().shape({
@@ -32,14 +33,27 @@ export default function SignUp({ navigation }) {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
-        name,
         email,
         password
       );
       const user = userCredential.user;
       console.log("User signed up successfully:", user);
+
+      await updateProfile(user, { displayName: name });
+      console.log("User created with name:", user.displayName);
+
       // Additional actions after successful signup, like navigation
-      navigation.navigate("LogIn");
+      Alert.alert(
+        `Welcome ${user.displayName}!`,
+        "You have successfully signed up. Please click OK to navigate Sign in page.",
+        [
+          {
+            text: "OK",
+            onPress: () => navigation.navigate("LogIn"),
+          },
+        ],
+        { cancelable: false }
+      );
     } catch (error) {
       setErrors({ firebase: error.message });
       console.log("Error signing up:", error);
@@ -70,14 +84,6 @@ export default function SignUp({ navigation }) {
                   resizeMode="contain"
                   source={images.SignUpIconImage}
                   style={styles.headerImg}></Image>
-                {/* <Image 
-                  alt="App Logo"
-                  resizeMode="contain"
-                  style={styles.headerImg}
-                  source={{
-                    uri: "https://assets.withfra.me/SignIn.2.png",
-                  }}
-                  /> */}
                 <Text style={styles.title}>Get Started</Text>
                 <Text style={styles.subtitle}>
                   All Fields are Required to continue.
@@ -136,7 +142,6 @@ export default function SignUp({ navigation }) {
                     <Text style={styles.btnText}>Sign Up</Text>
                   </View>
                 </TouchableOpacity>
-                {/* <Button title="Sign Up" onPress={handleSubmit} /> */}
               </View>
             </KeyboardAwareScrollView>
           </View>

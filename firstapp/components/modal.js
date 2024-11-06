@@ -4,12 +4,14 @@ import {
   Text,
   TextInput,
   Modal,
+  Alert,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-
 import { Formik } from "formik";
 import * as Yup from "yup";
+import { auth } from "../firebase";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 const ForgotPwdSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -18,20 +20,28 @@ const ForgotPwdSchema = Yup.object().shape({
 export default function Modals({}) {
   const [modalVisible, setModalVisible] = useState(false);
 
-  //   const handleConfirm = () => {
-  //     console.log("Confirmed!");
-  //     setModalVisible(false);
-  //   };
-
   const handleCancel = () => {
-    // console.log("Canceled!");
     setModalVisible(false);
   };
 
-  const handleSignup = () => {
-    // Proceed with login logic
-    console.log("Sign up...");
-    setModalVisible(false);
+  const handleSendPasswordResetLink = async (values) => {
+    const { email } = values;
+
+    await sendPasswordResetEmail(auth, email)
+      .then(() =>
+        Alert.alert(
+          "Password reset email sent",
+          "Please check your inbox.",
+          [
+            {
+              text: "OK",
+              onPress: () => setModalVisible(false),
+            },
+          ],
+          { cancelable: false }
+        )
+      )
+      .catch((error) => console.log(error.message));
   };
 
   return (
@@ -57,7 +67,7 @@ export default function Modals({}) {
             <Formik
               initialValues={{ email: "" }}
               validationSchema={ForgotPwdSchema}
-              onSubmit={(values) => handleSignup(values)}>
+              onSubmit={(values) => handleSendPasswordResetLink(values)}>
               {({
                 handleChange,
                 handleBlur,

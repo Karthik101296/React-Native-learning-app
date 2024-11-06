@@ -1,12 +1,11 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import * as React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import welcomeScreen from '../firstapp/pages/welcomePage';
-import homeScreen from '../firstapp/pages/homePage';
-import signUpScreen from '../firstapp/pages/signUpPage';
-import logInScreen from '../firstapp/pages/login';
+import { StyleSheet, Text, View } from "react-native";
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import welcomeScreen from "../firstapp/pages/welcomePage";
+import homeScreen from "../firstapp/pages/homePage";
+import signUpScreen from "../firstapp/pages/signUpPage";
+import logInScreen from "../firstapp/pages/login";
 
 const stack = createNativeStackNavigator();
 
@@ -24,7 +23,7 @@ export default function App() {
           screenOptions={{
             headerBackTitleVisible: false,
           }}>
-            <stack.Screen
+          <stack.Screen
             name="Welcome"
             component={welcomeScreen}
             options={{
@@ -32,13 +31,13 @@ export default function App() {
               headerTitleAlign: "center",
               headerShown: false,
               headerStyle: {
-                backgroundColor: "#F6FBF4", //Set Header color
+                backgroundColor: "#F6FBF4",
               },
-              headerTintColor: "#FBF4F5", //Set Header text color
+              headerTintColor: "#FBF4F5",
               headerTitleStyle: {
                 fontSize: 22,
                 fontFamily: "PlaywriteIN",
-                fontWeight: "600", //Set Header text style
+                fontWeight: "600",
               },
             }}></stack.Screen>
           <stack.Screen
@@ -49,13 +48,13 @@ export default function App() {
               headerTitleAlign: "center",
               headerShown: false,
               headerStyle: {
-                backgroundColor: "#8AAAE5", //Set Header color
+                backgroundColor: "#8AAAE5",
               },
-              headerTintColor: "#FBF4F5", //Set Header text color
+              headerTintColor: "#FBF4F5",
               headerTitleStyle: {
                 fontSize: 22,
                 fontFamily: "PlaywriteIN",
-                fontWeight: "600", //Set Header text style
+                fontWeight: "600",
               },
             }}></stack.Screen>
 
@@ -65,14 +64,15 @@ export default function App() {
             options={{
               title: "Home",
               headerTitleAlign: "center",
+              headerShown: false,
               headerStyle: {
-                backgroundColor: "#2F3C7E", //Set Header color
+                backgroundColor: "#2F3C7E",
               },
-              headerTintColor: "#FBEAEB", //Set Header text color
+              headerTintColor: "#FBEAEB",
               headerTitleStyle: {
                 fontSize: 22,
                 fontFamily: "PlaywriteIN",
-                fontWeight: "600", //Set Header text style
+                fontWeight: "600",
               },
             }}></stack.Screen>
 
@@ -92,28 +92,21 @@ export default function App() {
                 fontWeight: "600", //Set Header text style
               },
             }}></stack.Screen>
-
-         
         </stack.Navigator>
       }
     </NavigationContainer>
   );
 }
 
-
-
-
-
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
   heading: {
     fontSize: 24,
-    color: '#121212'
-  }
+    color: "#121212",
+  },
 });

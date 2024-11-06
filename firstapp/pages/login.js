@@ -12,7 +12,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import images from "../assets/images";
 import Modal from "../components/modal";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function SignIn({ navigation }) {
   const [email, setEmail] = useState("");
@@ -52,13 +52,13 @@ export default function SignIn({ navigation }) {
         await signInWithEmailAndPassword(auth, email, password);
         console.log("User signed in successfully");
         navigation.navigate("Home");
+        setEmail("");
+        setPassword("");
         // Handle successful sign-in
       } catch (error) {
         setError(error.message);
         console.log("Error signing in:", error);
       }
-      // Proceed with login logic
-      console.log("Logging in...");
     }
   };
 
@@ -97,7 +97,7 @@ export default function SignIn({ navigation }) {
                 keyboardType="email-address"
                 onFocus={() => setError((prev) => ({ ...prev, email: "" }))}
                 onChangeText={(text) => setEmail(text)}
-                //onBlur={() => validateForm('email', email)}
+                //onBlur={(text) => setEmail(text)}
                 placeholder="john@example.com"
                 placeholderTextColor="#6b7280"
                 style={styles.inputControl}
@@ -114,7 +114,7 @@ export default function SignIn({ navigation }) {
                 clearButtonMode="while-editing"
                 onChangeText={(text) => setPassword(text)}
                 onFocus={() => setError((prev) => ({ ...prev, password: "" }))}
-                //onBlur={() => validateForm('password', password)}
+                //onBlur={(text) => setPassword(text)}
                 placeholder="********"
                 placeholderTextColor="#6b7280"
                 style={styles.inputControl}
