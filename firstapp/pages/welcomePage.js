@@ -14,18 +14,22 @@ import images from "../assets/images";
 
 export default function Welcome({ navigation }) {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#F6FBF4" }}>
-      <View style={styles.container}>
-        <KeyboardAwareScrollView>
+    <SafeAreaView style={styles.safeArea}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.scrollContainer}
+        enableOnAndroid={true}>
+        <View style={styles.container}>
           <View style={styles.headerSec}>
+            <Image
+              alt="App Logo"
+              resizeMode="contain"
+              source={images.WelcomeAppImage}
+              style={styles.appImg}></Image>
             <Text style={styles.title}>
               Welcome To The<Text style={{ color: "#BEC75C" }}> ...App!</Text>
             </Text>
-            <Text style={styles.subtitle}>
-              Lets Get Started...
-            </Text>
+            <Text style={styles.subtitle}>Lets Get Started...</Text>
           </View>
-          
           <View style={styles.bodySec}>
             <TouchableOpacity
               onPress={() => {
@@ -44,47 +48,57 @@ export default function Welcome({ navigation }) {
               </View>
             </TouchableOpacity>
           </View>
-        </KeyboardAwareScrollView>
-      </View>
+        </View>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 0,
-    paddingHorizontal: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
+  safeArea: {
     flex: 1,
-    flexDirection: "column",
-    flexShrink: 1,
-    flexBasis: 0,
-    fontFamily: "PlaywriteIN",
-    marginVertical: 'auto',
-    textAlign: 'center',
-    width: '100%',
+    backgroundColor: "#f0f0f0",
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  container: {
+    width: "100%",
+    alignItems: "center",
+    padding: 20,
+  },
+  headerSec: {
+    marginBottom: 30,
+    alignItems: "center",
+    width: "100%",
+  },
+  appImg: {
+    width: 150,
+    height: 150,
+    alignSelf: "center",
+    marginBottom: 20,
   },
   title: {
-    fontSize: 36,
-    fontWeight: 700,
+    fontSize: 32,
+    fontWeight: "700",
     color: "#97d17a",
+    textAlign: "center",
   },
   subtitle: {
     fontSize: 24,
-    fontWeight: 400,
+    fontWeight: "400",
     color: "#97d17a",
+    marginTop: 10,
+    textAlign: "center",
   },
-  headerSec: {
-    paddingVertical: 50,
-    flex: 1,
-justifyContent: 'center',
-textAlign: 'center'  },
   bodySec: {
-    width: '90%',
-    flex: 1,
-    flexDirection: "row",
+    width: "100%",
+    alignItems: "center",
     justifyContent: "space-between",
+    flexDirection: "row",
+    width: "90%",
   },
   btn: {
     backgroundColor: "#BEC75C",
@@ -92,15 +106,13 @@ textAlign: 'center'  },
     justifyContent: "center",
     borderRadius: 30,
     paddingVertical: 10,
-    paddingHorizontal: 20,
-    height: 50,
+    //paddingHorizontal: 20,
+    marginVertical: 10,
     width: 150,
   },
   btnText: {
     fontSize: 18,
-    lineHeight: 26,
     fontWeight: "600",
-    color: "#CADCFC",
     color: "#F6FBF4",
   },
 });
