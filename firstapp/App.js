@@ -8,6 +8,10 @@ import homeScreen from "../firstapp/pages/homePage";
 import signUpScreen from "../firstapp/pages/signUpPage";
 import logInScreen from "../firstapp/pages/login";
 import profileScreen from "../firstapp/pages/profilePage";
+import responseScreen from "../firstapp/pages/responseList";
+import cartScreen from "../firstapp/pages/cartPage";
+import itemLists from "./pages/itemLists";
+import carousel from "../firstapp/pages/carousel";
 
 const Drawer = createDrawerNavigator();
 
@@ -30,7 +34,7 @@ function DrawerNavigator() {
           title: "Home",
           headerTitleAlign: "center",
           headerStyle: {
-            backgroundColor: "#2F3C7E",
+            backgroundColor: "#8AAAE5",
           },
           headerTintColor: "#FBEAEB",
           headerTitleStyle: {
@@ -45,9 +49,54 @@ function DrawerNavigator() {
           title: "Profile",
           headerTitleAlign: "center",
           headerStyle: {
-            backgroundColor: "#2F3C7E",
+            backgroundColor: "#8AAAE5",
           },
-          headerTintColor: "#FBEAEB",
+          headerTintColor: "#FBF4F5",
+          headerTitleStyle: {
+            fontSize: 22,
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="Response"
+        component={responseScreen}
+        options={{
+          title: "Response",
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: "#8AAAE5",
+          },
+          headerTintColor: "#FBF4F5",
+          headerTitleStyle: {
+            fontSize: 22,
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="Test"
+        component={itemLists}
+        options={{
+          title: "Item Lists",
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: "#8AAAE5",
+          },
+          headerTintColor: "#FBF4F5",
+          headerTitleStyle: {
+            fontSize: 22,
+          },
+        }}
+      />
+      <Drawer.Screen
+        name="Carousel"
+        component={carousel}
+        options={{
+          title: "CarouselLists",
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: "#8AAAE5",
+          },
+          headerTintColor: "#FBF4F5",
           headerTitleStyle: {
             fontSize: 22,
           },
@@ -60,10 +109,57 @@ function DrawerNavigator() {
 function AppNavigator() {
   return (
     <stack.Navigator
-      initialRouteName="Welcome"
+      initialRouteName="DrawerHome"
       screenOptions={{
         headerBackTitleVisible: false,
       }}>
+      <stack.Screen
+        name="Response"
+        component={responseScreen}
+        options={{
+          title: "App",
+          headerTitleAlign: "center",
+          headerShown: false,
+          headerStyle: {
+            backgroundColor: "#F6FBF4",
+          },
+          headerTintColor: "#FBF4F5",
+          headerTitleStyle: {
+            fontSize: 22,
+          },
+        }}
+      />
+      <stack.Screen
+        name="Test"
+        component={itemLists}
+        options={{
+          title: "Test Response",
+          headerTitleAlign: "center",
+          headerShown: false,
+          headerStyle: {
+            backgroundColor: "#F6FBF4",
+          },
+          headerTintColor: "#FBF4F5",
+          headerTitleStyle: {
+            fontSize: 22,
+          },
+        }}
+      />
+      <stack.Screen
+        name="Cart"
+        component={cartScreen}
+        options={{
+          title: "Cart Page",
+          headerTitleAlign: "center",
+          headerStyle: {
+            backgroundColor: "#fff",
+          },
+          headerTintColor: "#000",
+          headerTitleStyle: {
+            fontSize: 22,
+          },
+        }}
+      />
       <stack.Screen
         name="Welcome"
         component={welcomeScreen}

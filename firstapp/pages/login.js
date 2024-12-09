@@ -58,8 +58,22 @@ export default function SignIn({ navigation }) {
         //setPassword("");
         // Handle successful sign-in
       } catch (error) {
-        setError(error.message);
-        console.log("Error signing in:", error);
+        // setError(error.message);
+        // console.log("Error signing in:", error);
+
+        const firebaseErrorMessages = {
+          "auth/invalid-email": "The email address is invalid.",
+          "auth/user-not-found": "No account found with this email.",
+          "auth/wrong-password": "The password is incorrect. Please try again.",
+          "auth/weak-password":
+            "The password is too weak. Please use a stronger password.",
+          "auth/invalid-credential":
+            "The provided credentials are invalid. Please try signing in again.",
+        };
+
+        setError({
+          firebase: firebaseErrorMessages[error.code] || error.message,
+        });
       }
     }
   };
@@ -134,9 +148,13 @@ export default function SignIn({ navigation }) {
                 </View>
               </TouchableOpacity>
             </View>
+            
 
             <Modal></Modal>
           </View>
+          {error.firebase && (
+                  <Text style={styles.firebaseError}>{error.firebase}</Text>
+                )}
         </KeyboardAwareScrollView>
         <TouchableOpacity style={{ marginTop: "auto" }}>
           <Text style={styles.formFooter}>
@@ -211,6 +229,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     letterSpacing: 0.15,
   },
+  firebaseError: {color: "red", marginTop: 2, textAlign: "center"},
   error: { color: "red", marginTop: 2, marginBottom: 3 },
   /** Input */
   input: {

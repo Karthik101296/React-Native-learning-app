@@ -17,8 +17,10 @@ import { auth } from "../firebase";
 import { signOut } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 
-export default function ProfilePage({ navigation, route }) {
+export default function ProfilePage({ navigation }) {
   const [displayName, setDisplayName] = useState("");
+
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -118,5 +120,14 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 0.25,
     color: "#FFFFFF",
+  },
+  welcomeText: {
+    fontSize: 20,
+    lineHeight: 21,
+    fontWeight: "bold",
+    fontStyle: "italic",
+    letterSpacing: 0.8,
+    color: "#FFFFFF",
+    marginVertical: 30,
   },
 });
