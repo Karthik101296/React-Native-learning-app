@@ -51,9 +51,11 @@ export default function SignIn({ navigation }) {
       try {
         await signInWithEmailAndPassword(auth, email, password);
         console.log("User signed in successfully");
-        navigation.navigate("Home");
-        setEmail("");
-        setPassword("");
+        navigation.navigate("DrawerHome", {
+          screen: "Home", // The target screen inside DrawerNavigator
+        });
+        //setEmail("");
+        //setPassword("");
         // Handle successful sign-in
       } catch (error) {
         setError(error.message);
@@ -163,13 +165,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 31,
-    fontWeight: "700",
+    fontWeight: 700,
     color: "#fff",
     marginBottom: 6,
   },
   subtitle: {
     fontSize: 15,
-    fontWeight: "500",
+    fontWeight: 500,
     color: "#fff",
   },
   /** Header */
@@ -198,13 +200,13 @@ const styles = StyleSheet.create({
   },
   formLink: {
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: 600,
     color: "#00246B",
     textAlign: "center",
   },
   formFooter: {
     fontSize: 15,
-    fontWeight: "600",
+    fontWeight: 600,
     color: "#00246B",
     textAlign: "center",
     letterSpacing: 0.15,
@@ -216,7 +218,7 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 17,
-    fontWeight: "600",
+    fontWeight: 600,
     color: "#00246B",
     marginBottom: 8,
   },
@@ -226,7 +228,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 12,
     fontSize: 15,
-    fontWeight: "500",
+    fontWeight: 500,
     color: "#121212",
     borderWidth: 1,
     borderColor: "#C9D3DB",
@@ -247,7 +249,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     lineHeight: 26,
-    fontWeight: "600",
+    fontWeight: 600,
     color: "#CADCFC",
   },
 });

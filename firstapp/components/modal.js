@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
 
   forgotPwd: {
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: 600,
     color: "#00246B",
     textAlign: "center",
   },
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   },
   inputLabel: {
     fontSize: 17,
-    fontWeight: "600",
+    fontWeight: 600,
     color: "#00246B",
     marginBottom: 8,
   },
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderRadius: 12,
     fontSize: 15,
-    fontWeight: "500",
+    fontWeight: 500,
     color: "#121212",
     borderWidth: 1,
     borderColor: "#C9D3DB",
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     lineHeight: 26,
-    fontWeight: "600",
+    fontWeight: 600,
     color: "#CADCFC",
   },
 });
