@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, SafeAreaView, View, Image, Text } from "react-native";
+import { StyleSheet, SafeAreaView, View, Image, Text, Dimensions } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import images from "../assets/images";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import MyCarousel from '../components/carouselComponent';
 
 export default function HomePage({ navigation, route }) {
   const [displayName, setDisplayName] = useState("");
@@ -41,6 +42,7 @@ export default function HomePage({ navigation, route }) {
               <Text style={styles.welcomeText}>Welcome!</Text>
             )}
           </View>
+          <MyCarousel />
         </KeyboardAwareScrollView>
       </View>
     </SafeAreaView>
@@ -72,5 +74,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginVertical: 36,
+  },
+  image: {
+    width: '100%',
+    height: 200,
   },
 });

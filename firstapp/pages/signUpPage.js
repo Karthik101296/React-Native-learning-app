@@ -55,8 +55,19 @@ export default function SignUp({ navigation }) {
         { cancelable: false }
       );
     } catch (error) {
-      setErrors({ firebase: error.message });
-      console.log("Error signing up:", error);
+      const firebaseErrorMessages = {
+        "auth/invalid-email":
+          "The email address is invalid. Please check and try again.",
+        "auth/email-already-in-use":
+          "This email is already registered. Please use a different email.",
+      };
+
+      setErrors({
+        firebase: firebaseErrorMessages[error.code] || error.message,
+      });
+
+      // const customMessage = firebaseErrorMessages[error.code] || "An unknown error occurred. Please try again.";
+      // Alert.alert(customMessage);
     } finally {
       setSubmitting(false);
     }
@@ -133,15 +144,15 @@ export default function SignUp({ navigation }) {
                   )}
                 </View>
 
-                {errors.firebase && (
-                  <Text style={styles.error}>{errors.firebase}</Text>
-                )}
-
                 <TouchableOpacity onPress={handleSubmit}>
                   <View style={styles.btn}>
                     <Text style={styles.btnText}>Sign Up</Text>
                   </View>
                 </TouchableOpacity>
+
+                {errors.firebase && (
+                  <Text style={styles.firebaseError}>{errors.firebase}</Text>
+                )}
               </View>
             </KeyboardAwareScrollView>
           </View>
@@ -215,6 +226,7 @@ const styles = StyleSheet.create({
     borderColor: "#C9D3DB",
     borderStyle: "solid",
   },
+  firebaseError: { color: "red", marginTop: 5 },
   error: { color: "red", marginTop: 2, marginBottom: 3 },
   /** Input */
   btn: {

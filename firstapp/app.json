@@ -4,7 +4,7 @@
     "slug": "firstapp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/images/phone_app_img2.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
@@ -17,12 +17,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/images/phone_app_img2.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.firstapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b5536e02-e66f-4d7b-82f1-be8baa816d6a"
+      }
     }
   }
 }
